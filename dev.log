@@ -1,0 +1,12 @@
+
+> unify_trucking_db@0.1.0 dev /Users/dvskrishna/Business/innovyom/Unify_Trucking_DB/unify_trucking_db
+> next dev --turbopack
+
+ ⚠ Port 3000 is in use by process 73412, using available port 3001 instead.
+   ▲ Next.js 15.5.3 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.2.49:3001
+
+ ✓ Starting...
+ ✓ Ready in 1277ms
+[?25h
