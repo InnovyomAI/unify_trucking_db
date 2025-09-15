@@ -1,3 +1,0 @@
-module.exports=[65108,a=>{"use strict";async function b(a){let b=await fetch("/api/demo/snapshots",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(a),cache:"no-store"});if(!b.ok)throw Error(function(a){if(!a||"object"!=typeof a)return null;let b=a.error;return"string"==typeof b?b:null}(await b.json().catch(()=>null))??`Failed to save snapshot (${b.status})`)}async function c(a){let b=await fetch(`/api/demo/snapshots/${encodeURIComponent(a)}`,{method:"GET",cache:"no-store"});if(404===b.status)return null;if(!b.ok)throw Error(`Fetch failed (${b.status})`);return await b.json()}a.s(["loadSnapshotRemote",()=>c,"saveSnapshotRemote",()=>b])}];
-
-//# sourceMappingURL=lib_demo-store-remote_ts_7b1c2314._.js.map

@@ -1,13 +1,14 @@
 "use client";
-
+import { use } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { loadSnapshotRemote, type DriverSnapshot } from "@/lib/demo-store-remote";
 import { verifyPin } from "@/lib/security"; // assumes you have a helper to check hash
 
-type Stage = "auth" | "basic" | "full" | "expired";
+type Stage = "auth" | "view" | "expired" | "basic" | "full";
+type Params = Promise<{ qrid: string }>;
 
-export default function VerifyPage({ params }: { params: { qrid: string } }) {
-  const qrid = params.qrid;
+export default function VerifyPage(props: { params: Params }) {
+  const { qrid } = use(props.params); // unwrap the Promise
   const [stage, setStage] = useState<Stage>("auth");
   const [orgId, setOrgId] = useState("");
   const [pass, setPass] = useState("");
