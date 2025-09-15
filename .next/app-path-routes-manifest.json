@@ -1,12 +1,12 @@
 {
+  "/_not-found/page": "/_not-found",
+  "/api/demo/snapshots/route": "/api/demo/snapshots",
   "/api/consent/artifact/route": "/api/consent/artifact",
   "/api/demo/snapshots/[qrid]/route": "/api/demo/snapshots/[qrid]",
-  "/api/demo/snapshots/route": "/api/demo/snapshots",
+  "/favicon.ico/route": "/favicon.ico",
   "/api/profile/duplicate-check/route": "/api/profile/duplicate-check",
   "/robots.txt/route": "/robots.txt",
-  "/favicon.ico/route": "/favicon.ico",
-  "/_not-found/page": "/_not-found",
+  "/driver/register/page": "/driver/register",
   "/page": "/",
-  "/v/[qrid]/page": "/v/[qrid]",
-  "/driver/register/page": "/driver/register"
+  "/v/[qrid]/page": "/v/[qrid]"
 }
