@@ -1,12 +1,63 @@
+// lib/demo-store-remote.ts (DriverSnapshot type)
+// lib/demo-store-remote.ts
+
 export type DriverSnapshot = {
   qrid: string;
+  pinHash: string;
+
+  // Identity
   name: string;
+  dob: string;
+  gender?: string;
+  citizenship: string;
+  residencyCA: string;
+
+  // Licence
   jurisdiction: string;
   licenseNo: string;
   licenseClass: string;
   licenseExpiry: string;
-  issuedAt: string; // ISO
+
+  // Contact
+  email: string;
+  phone: string;
+
+  // Address
+  postal?: string;
+  country?: string;
+  region?: string;
+  city?: string;
+  address1?: string;
+  address2?: string;
+
+  // Status
+  prNumber?: string;
+  permitType?: string;
+  uci?: string;
+  permitExpiry?: string;
+
+  // Passport
+  passportCountry?: string;
+  passportNumber?: string;
+
+  // Languages
+  englishLevel: string;
+  otherLanguages?: { language: string; level: string }[];
+
+  // Work experience
+  work?: { company: string; role: string; start: string; end: string }[];
+
+  // Consents
+  consentName: string;
+  consentDate: string;
+  consentAbstract: boolean;
+  certifyAccurate: boolean;
+
+  // Metadata
+  issuedAt: string;
 };
+
+
 
 export async function saveSnapshotRemote(s: DriverSnapshot): Promise<void> {
   const res = await fetch("/api/demo/snapshots", {
