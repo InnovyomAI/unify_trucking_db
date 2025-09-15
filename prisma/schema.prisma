@@ -1,0 +1,188 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"   // Aurora DSQL: no FK constraints
+}
+
+// ---------- User ----------
+model User {
+  id              String          @id @default(cuid())
+  email           String
+  name            String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Note: many-to-one at the Prisma level to avoid required @unique.
+  // We will enforce 1:1 in the DB via UNIQUE INDEX ASYNC on DriverProfile.userId.
+  driverProfiles  DriverProfile[]
+}
+
+// ---------- Driver Profile ----------
+model DriverProfile {
+  id                    String          @id @default(cuid())
+  userId                String
+  user                  User            @relation(fields: [userId], references: [id])
+
+  legalName             String
+  dob                   DateTime
+  email                 String
+  phone                 String
+
+  addressLine1          String
+  addressLine2          String?
+  city                  String
+  region                String
+  postalCode            String
+  country               String
+
+  issuingJurisdiction   String          // e.g., "CA-MB"
+  licenseNo             String
+  licenseNoNorm         String          // canonicalized
+  licenseClass          String
+  licenseExpiry         DateTime
+
+  workEligibilityStatus String
+  status                String          @default("PENDING") // enforce allowed values in app code
+  qrid                  String
+  revoked               Boolean         @default(false)
+
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  attributes            DriverAttribute[]
+  documents             Document[]
+  employments           EmploymentHistory[]
+  educations            Education[]
+  languages             LanguageSkill[]
+  abstractConsents      AbstractConsent[]
+  attestations          Attestation[]
+  audits                AccessAudit[]
+  potentialDupes        PotentialDuplicate[] @relation("PrimaryDupes")
+}
+
+// ---------- Employment History ----------
+model EmploymentHistory {
+  id              String         @id @default(cuid())
+  driverId        String
+  driver          DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  companyName     String
+  roleTitle       String
+  startDate       DateTime
+  endDate         DateTime?
+  location        String?
+  contactName     String?
+  contactPhone    String?
+  contactEmail    String?
+  notes           String?
+  verifiedByOrgId String?
+  verifiedAt      DateTime?
+}
+
+// ---------- Education ----------
+model Education {
+  id             String         @id @default(cuid())
+  driverId       String
+  driver         DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  institution    String
+  credential     String
+  field          String?
+  graduationYear Int?
+}
+
+// ---------- Languages ----------
+model LanguageSkill {
+  id          String         @id @default(cuid())
+  driverId    String
+  driver      DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  langCode    String         // ISO 639-1 ("en","pa","hi","es")
+  level       String         // BASIC | CONVERSATIONAL | FLUENT | NATIVE
+  englishCEFR String?        // only if langCode == "en"
+}
+
+// ---------- Abstract Consent ----------
+model AbstractConsent {
+  id            String         @id @default(cuid())
+  driverId      String
+  driver        DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  authority     String         // e.g., "CA-MB-MPI"
+  scope         String         // JSON as string (e.g., {"type":"5-year"})
+  signedName    String
+  signedAt      DateTime
+  ip            String?
+  userAgent     String?
+  expAt         DateTime?
+  status        String         // ACTIVE | REVOKED | EXPIRED | USED
+  artifactDocId String?
+}
+
+// ---------- Potential Duplicates ----------
+model PotentialDuplicate {
+  id                String         @id @default(cuid())
+  primaryDriverId   String
+  primaryDriver     DriverProfile  @relation("PrimaryDupes", fields: [primaryDriverId], references: [id], onDelete: Cascade)
+  candidateDriverId String?
+  reason            String         // "email_match" | "passport_match" | "name_dob_fuzzy" | ...
+  createdAt         DateTime       @default(now())
+  resolvedAt        DateTime?
+  resolution        String?        // "MERGED" | "DISMISSED"
+}
+
+// ---------- Documents ----------
+model Document {
+  id         String         @id @default(cuid())
+  driverId   String?
+  driver     DriverProfile? @relation(fields: [driverId], references: [id], onDelete: SetNull)
+
+  docType    String         // "PASSPORT" | "VISA" | "ABSTRACT" | ...
+  bucket     String
+  storageKey String         // S3 object key
+  mimeType   String
+  sizeBytes  Int
+  sha256Hex  String?
+
+  uploadedAt DateTime       @default(now())
+  createdBy  String?
+  relatedTo  String?
+  relatedId  String?
+}
+
+// ---------- Attributes, Attestations, Audits ----------
+model DriverAttribute {
+  id        String         @id @default(cuid())
+  driverId  String
+  driver    DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  key       String
+  value     String
+  createdAt DateTime       @default(now())
+}
+
+model Attestation {
+  id        String         @id @default(cuid())
+  driverId  String
+  driver    DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  title     String
+  payload   String         // JSON as string
+  createdAt DateTime       @default(now())
+}
+
+model AccessAudit {
+  id        String         @id @default(cuid())
+  driverId  String
+  driver    DriverProfile  @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  actorId   String         // who accessed
+  action    String         // "VIEW_DOC" | "MERGE" | "UPDATE_LICENSE" | ...
+  note      String?
+  createdAt DateTime       @default(now())
+}
+
+

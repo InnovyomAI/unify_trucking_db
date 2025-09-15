@@ -1,0 +1,8 @@
+{
+  "/api/demo/snapshots/[qrid]/route": "app/api/demo/snapshots/[qrid]/route.js",
+  "/api/demo/snapshots/route": "app/api/demo/snapshots/route.js",
+  "/driver/register/page": "app/driver/register/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/v/[qrid]/page": "app/v/[qrid]/page.js"
+}
