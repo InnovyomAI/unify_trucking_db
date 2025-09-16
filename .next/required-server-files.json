@@ -288,7 +288,14 @@
     "configFileName": "next.config.ts",
     "turbopack": {
       "root": "/Users/dvskrishna/Business/innovyom/Unify_Trucking_DB/unify_trucking_db"
-    }
+    },
+    "_originalRedirects": [
+      {
+        "source": "/",
+        "destination": "/driver/register",
+        "permanent": true
+      }
+    ]
   },
   "appDir": "/Users/dvskrishna/Business/innovyom/Unify_Trucking_DB/unify_trucking_db",
   "relativeAppDir": "",

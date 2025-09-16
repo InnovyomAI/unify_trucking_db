@@ -5,7 +5,7 @@ type AppRoutes = "/" | "/driver/register" | "/v/[qrid]"
 type AppRouteHandlerRoutes = "/api/consent/artifact" | "/api/demo/snapshots" | "/api/demo/snapshots/[qrid]" | "/api/profile/duplicate-check"
 type PageRoutes = never
 type LayoutRoutes = "/"
-type RedirectRoutes = never
+type RedirectRoutes = "/"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes | AppRouteHandlerRoutes
 
