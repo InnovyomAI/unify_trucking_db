@@ -1,5 +1,0 @@
-User-Agent: *
-Disallow: /verify/
-Disallow: /admin/
-
-Sitemap: https://example.com/sitemap.xml

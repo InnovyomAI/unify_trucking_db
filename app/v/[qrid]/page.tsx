@@ -16,6 +16,16 @@ export default function VerifyPage(props: { params: Params }) {
   const [err, setErr] = useState<string | null>(null);
   const [snap, setSnap] = useState<DriverSnapshot | null>(null);
   const [seconds, setSeconds] = useState(90);
+  // Verifier comment (demo-only; not persisted)
+  const [comment, setComment] = useState("");
+  const [commentSubmitted, setCommentSubmitted] = useState(false);
+
+  function handleCommentSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!comment.trim()) return;
+    setCommentSubmitted(true);
+}
+
 
   // simple demo creds (replace later with real auth)
   function verifyCreds(id: string, p: string) {
@@ -242,14 +252,8 @@ export default function VerifyPage(props: { params: Params }) {
 
             <KV k="Consent Name" v={snap.consentName} />
             <KV k="Consent Date" v={snap.consentDate} />
-            <KV
-              k="Consent Abstract"
-              v={snap.consentAbstract ? "Yes" : "No"}
-            />
-            <KV
-              k="Certify Accurate"
-              v={snap.certifyAccurate ? "Yes" : "No"}
-            />
+            <KV k="Consent Abstract" v={snap.consentAbstract ? "Yes" : "No"} />
+            <KV k="Certify Accurate" v={snap.certifyAccurate ? "Yes" : "No"} />
           </dl>
 
           {/* Work experience */}
@@ -269,6 +273,32 @@ export default function VerifyPage(props: { params: Params }) {
               </ul>
             </div>
           )}
+
+          {/* --- Verifier Comment Box (demo only) --- */}
+          <div className="mt-6">
+            <h3 className="text-base font-semibold">Verifier Comment</h3>
+            {!commentSubmitted ? (
+              <form onSubmit={handleCommentSubmit} className="mt-2 space-y-2">
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Type your comment on this driver’s profile…"
+                  className="w-full rounded border border-slate-300 p-2"
+                  rows={4}
+                />
+                <button
+                  type="submit"
+                  className="rounded bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700"
+                >
+                  Submit Comment
+                </button>
+              </form>
+            ) : (
+              <p className="mt-2 rounded border border-slate-200 bg-emerald-50 p-2 text-sm text-emerald-700">
+                ✅ Comment submitted (not saved — demo only).
+              </p>
+            )}
+          </div>
         </div>
       )}
 

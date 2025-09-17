@@ -1,12 +1,6 @@
 {
   "/api/demo/snapshots/route": "app/api/demo/snapshots/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/demo/snapshots/[qrid]/route": "app/api/demo/snapshots/[qrid]/route.js",
-  "/api/consent/artifact/route": "app/api/consent/artifact/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/robots.txt/route": "app/robots.txt/route.js",
-  "/api/profile/duplicate-check/route": "app/api/profile/duplicate-check/route.js",
-  "/page": "app/page.js",
-  "/driver/register/page": "app/driver/register/page.js",
-  "/v/[qrid]/page": "app/v/[qrid]/page.js"
+  "/v/[qrid]/page": "app/v/[qrid]/page.js",
+  "/driver/register/page": "app/driver/register/page.js"
 }
