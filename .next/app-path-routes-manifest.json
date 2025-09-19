@@ -1,0 +1,12 @@
+{
+  "/api/demo/snapshots/route": "/api/demo/snapshots",
+  "/api/demo/snapshots/[qrid]/route": "/api/demo/snapshots/[qrid]",
+  "/_not-found/page": "/_not-found",
+  "/api/consent/artifact/route": "/api/consent/artifact",
+  "/api/profile/duplicate-check/route": "/api/profile/duplicate-check",
+  "/favicon.ico/route": "/favicon.ico",
+  "/robots.txt/route": "/robots.txt",
+  "/driver/register/page": "/driver/register",
+  "/page": "/",
+  "/v/[qrid]/page": "/v/[qrid]"
+}

@@ -1,0 +1,128 @@
+.
+├── app
+│   ├── api
+│   │   ├── consent
+│   │   │   └── artifact
+│   │   │       └── route.ts
+│   │   ├── demo
+│   │   │   └── snapshots
+│   │   │       ├── [qrid]
+│   │   │       ├── route.ts
+│   │   │       └── store.ts
+│   │   └── profile
+│   │       └── duplicate-check
+│   │           └── route.ts
+│   ├── driver
+│   │   └── register
+│   │       └── page.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── robots.ts
+│   └── v
+│       └── [qrid]
+│           └── page.tsx
+├── components
+│   ├── AppShell.tsx
+│   ├── driver
+│   │   ├── DocUploadCard.tsx
+│   │   └── DocUploadField.tsx
+│   ├── footer
+│   │   └── SiteFooter.tsx
+│   ├── header
+│   │   └── GlobalHeader.tsx
+│   ├── inputs
+│   │   ├── AddressCountrySelect.tsx
+│   │   ├── CountrySelect.tsx
+│   │   ├── LanguageMulti.tsx
+│   │   ├── LicenceInput.tsx
+│   │   ├── LicenseClassSelect.tsx
+│   │   ├── NameFields.tsx
+│   │   ├── PassportInput.tsx
+│   │   ├── PhoneInput.tsx
+│   │   ├── PostalInput.tsx
+│   │   ├── RegionSelect.tsx
+│   │   └── StatusWizard.tsx
+│   ├── pdf
+│   │   └── DriverCardPDF.tsx
+│   ├── TrustBanner.tsx
+│   └── ui
+│       ├── alert.tsx
+│       ├── badge.tsx
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── dialog.tsx
+│       ├── RoleCard.tsx
+│       ├── separator.tsx
+│       ├── sheet.tsx
+│       ├── tabs.tsx
+│       └── tooltip.tsx
+├── components.json
+├── dev.log
+├── eslint.config.mjs
+├── lib
+│   ├── address.ts
+│   ├── constants.ts
+│   ├── copy.ts
+│   ├── countries.ts
+│   ├── demo-store-remote.ts
+│   ├── demo-store.ts
+│   ├── files.ts
+│   ├── languages.ts
+│   ├── license-classes.ts
+│   ├── license-normalize.ts
+│   ├── license-rules.ts
+│   ├── names.ts
+│   ├── ocr
+│   │   ├── fuse.ts
+│   │   ├── parse.ts
+│   │   ├── preprocess.ts
+│   │   └── rectify.ts
+│   ├── passport
+│   │   ├── patterns.ts
+│   │   └── validate.ts
+│   ├── passport-rules.ts
+│   ├── phone-format.ts
+│   ├── phone.ts
+│   ├── postal.ts
+│   ├── qr.ts
+│   ├── register-schemas.ts
+│   ├── schemas.ts
+│   ├── security.ts
+│   ├── ui.tsx
+│   ├── utils.ts
+│   └── uuid.ts
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.js
+├── prisma
+│   ├── migrations
+│   │   ├── 20250917055834_init
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── schema.prisma
+│   └── seed.ts
+├── public
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── logo.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── README.md
+├── repo-structure.txt
+├── scripts
+│   ├── dsql-create-async-uniques.sh
+│   ├── prisma-push.sh
+│   └── prisma-studio.sh
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.tsbuildinfo
+└── types
+    └── opencv.d.ts
+
+30 directories, 96 files
